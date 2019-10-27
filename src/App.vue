@@ -18,6 +18,12 @@
 					<v-col cols="12" sm="8" md="4">
 						<DigraphBackward />
 					</v-col>
+					<v-col cols="12" sm="8" md="4">
+						<DigraphPartialNodes />
+					</v-col>
+					<v-col cols="12" sm="8" md="4">
+						<DigraphPartialEdges />
+					</v-col>
 				</v-row>
 			</v-container>
 		</v-content>
@@ -29,13 +35,17 @@ import Vue from 'vue'
 import Digraph from './components/Digraph.vue'
 import DigraphForward from './components/DigraphForward.vue'
 import DigraphBackward from './components/DigraphBackward.vue'
+import DigraphPartialNodes from './components/DigraphPartialNodes.vue'
+import DigraphPartialEdges from './components/DigraphPartialEdges.vue'
 
 export default Vue.extend({
 	name: 'App',
 	components: {
 		Digraph,
 		DigraphForward,
-		DigraphBackward
+		DigraphBackward,
+		DigraphPartialNodes,
+		DigraphPartialEdges
 	},
 	data: () => ({
 		//

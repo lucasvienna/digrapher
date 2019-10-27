@@ -21,22 +21,20 @@
 				></v-text-field>
 			</v-form>
 
-			<v-checkbox
-				v-model="properties"
-				label="Loops"
-				value="loop"
-				readonly
-			></v-checkbox>
+			<v-row dense>
+				<v-col class="text-right" cols="4">
+					<v-label>Loops</v-label>
+				</v-col>
+				<v-col>{{ loops }}</v-col>
+			</v-row>
 
-			{{ loops }}
-			<v-checkbox
-				v-model="properties"
-				label="Parallel edges"
-				value="parallel"
-				readonly
-			></v-checkbox>
+			<v-row dense>
+				<v-col class="text-right" cols="4">
+					<v-label>Parallel edges</v-label>
+				</v-col>
+				<v-col>{{ parallels }}</v-col>
+			</v-row>
 
-			{{ parallels }}
 			<v-row dense>
 				<v-col class="text-right" cols="4">
 					<v-label>Outgoing Degrees</v-label>
