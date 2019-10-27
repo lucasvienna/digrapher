@@ -2,6 +2,15 @@
 	<v-card class="elevation-12">
 		<v-toolbar color="primary" dark flat>
 			<v-toolbar-title>Nodes + Backward List</v-toolbar-title>
+			<v-spacer></v-spacer>
+			<v-tooltip bottom>
+				<template v-slot:activator="{ on }">
+					<v-btn icon large v-on="on" @click="onReset()">
+						<v-icon>mdi-restore</v-icon>
+					</v-btn>
+				</template>
+				<span>Reset</span>
+			</v-tooltip>
 		</v-toolbar>
 		<v-card-text>
 			<v-form>
@@ -210,6 +219,12 @@ export default class DigraphBackward extends Vue {
 			this.graph[edge[0] - 1].degreeOut += 1
 			this.graph[edge[1] - 1].degreeIn += 1
 		})
+	}
+
+	private onReset() {
+		this.nodesInput = ''
+		this.edgesInput = ''
+		this.graph = []
 	}
 
 	private print_r(array: Array<any>, list: boolean = false) {
