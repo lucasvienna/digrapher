@@ -4,6 +4,15 @@
 			<v-toolbar-title class="headline text-uppercase">
 				<span style="color: #fff;">Digrapher</span>
 			</v-toolbar-title>
+			<v-spacer></v-spacer>
+			<v-btn
+				text
+				href="http://github.com/Avyiel/digrapher"
+				target="_blank"
+				color="white"
+			>
+				GitHub <v-icon small color="white">mdi-open-in-new</v-icon>
+			</v-btn>
 		</v-app-bar>
 
 		<v-content>
@@ -46,9 +55,6 @@ export default Vue.extend({
 		DigraphBackward,
 		DigraphPartialNodes,
 		DigraphPartialEdges
-	},
-	data: () => ({
-		//
-	})
+	}
 })
 </script>
