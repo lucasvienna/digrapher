@@ -136,9 +136,10 @@
 </template>
 
 <script lang="ts">
-import { difference, isEqual, union } from 'lodash'
+import { isEqual, intersection } from 'lodash'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { INode } from '../models/node.model'
+import { print_r } from '../utils/print'
 
 @Component
 export default class Digraph extends Vue {
@@ -146,10 +147,6 @@ export default class Digraph extends Vue {
 	private edgesInput = ''
 
 	private graph: Array<INode> = []
-
-	constructor() {
-		super()
-	}
 
 	get nodes(): Array<number> {
 		return this.nodesInput
@@ -185,20 +182,12 @@ export default class Digraph extends Vue {
 	}
 
 	get parallels(): Array<Array<number>> {
-		const parallels: Array<Array<number>> = []
+		const findDuplicates = (arr: Array<any>) =>
+			arr.filter((item, index) => arr.indexOf(item) != index)
 
-		for (const vertice of this.edges) {
-			this.edges.forEach(vtc => {
-				if (
-					!isEqual(vertice, vtc) &&
-					(vertice[0] === vtc[1] && vertice[1] === vtc[0])
-				) {
-					parallels.push(vertice)
-				}
-			})
-		}
-
-		return parallels
+		return findDuplicates(this.edges.map(el => el.toString())).map(dupe =>
+			dupe.split(',').map((x: string) => Number(x))
+		)
 	}
 
 	get outgoingDegrees(): Array<number> {
@@ -216,7 +205,7 @@ export default class Digraph extends Vue {
 	get sources(): Array<number> {
 		const sources: Array<number> = []
 		for (let index = 0; index < this.graph.length; index++) {
-			if (this.graph[index].degreeOut > 0) sources.push(index + 1)
+			if (this.graph[index].degreeIn === 0) sources.push(index + 1)
 		}
 		return sources
 	}
@@ -224,13 +213,13 @@ export default class Digraph extends Vue {
 	get targets(): Array<number> {
 		const targets: Array<number> = []
 		for (let index = 0; index < this.graph.length; index++) {
-			if (this.graph[index].degreeIn > 0) targets.push(index + 1)
+			if (this.graph[index].degreeOut === 0) targets.push(index + 1)
 		}
 		return targets
 	}
 
 	get isolated(): Array<number> {
-		return difference(this.nodes, union(this.sources, this.targets))
+		return intersection(this.sources, this.targets)
 	}
 
 	get sourceTargets(): Array<Array<number>> {
@@ -303,7 +292,7 @@ export default class Digraph extends Vue {
 			output += '['
 			output += node.degreeOut
 			output += ','
-			output += this.print_r(node.next)
+			output += print_r(node.next)
 			output += '],'
 		})
 
@@ -320,7 +309,7 @@ export default class Digraph extends Vue {
 			output += '['
 			output += node.degreeIn
 			output += ','
-			output += this.print_r(node.prev)
+			output += print_r(node.prev)
 			output += '],'
 		})
 
@@ -382,36 +371,6 @@ export default class Digraph extends Vue {
 
 	private hasParallels(): boolean {
 		return this.parallels.length > 0
-	}
-
-	private print_r(array: Array<any>, list: boolean = false) {
-		if (array.length === 0) return '{}'
-
-		let output = ''
-
-		function _formatArray(obj: Array<any>) {
-			if (obj.length === 0) return '{}'
-
-			let retVal = '{'
-			obj.forEach(x => (retVal += `${x},`))
-			if (output.charAt(output.length - 1) !== '{')
-				retVal = retVal.slice(0, retVal.length - 1)
-			retVal += '}'
-
-			return retVal
-		}
-
-		if (list) {
-			output += '['
-			array.forEach(x => (output += `${_formatArray(x)},`))
-			if (output.charAt(output.length - 1) !== '[')
-				output = output.slice(0, output.length - 1)
-			output += ']'
-		} else {
-			output = _formatArray(array)
-		}
-
-		return output
 	}
 }
 </script>

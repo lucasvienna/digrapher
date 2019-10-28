@@ -76,6 +76,7 @@
 import { difference, isEqual, union } from 'lodash'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { INode } from '../models/node.model'
+import { print_r } from '../utils/print'
 
 @Component
 export default class DigraphForward extends Vue {
@@ -172,7 +173,7 @@ export default class DigraphForward extends Vue {
 			output += '['
 			output += node.degreeIn
 			output += ','
-			output += this.print_r(node.prev)
+			output += print_r(node.prev)
 			output += '],'
 		})
 
@@ -226,61 +227,6 @@ export default class DigraphForward extends Vue {
 		this.nodesInput = ''
 		this.edgesInput = ''
 		this.graph = []
-	}
-
-	private print_r(array: Array<any>, list: boolean = false) {
-		if (array.length === 0) return '{}'
-
-		let output = ''
-
-		function _formatArray(obj: Array<any>) {
-			if (obj.length === 0) return '{}'
-
-			let retVal = '{'
-			obj.forEach(x => (retVal += `${x},`))
-			if (output.charAt(output.length - 1) !== '{')
-				retVal = retVal.slice(0, retVal.length - 1)
-			retVal += '}'
-
-			return retVal
-		}
-
-		if (list) {
-			output += '['
-			array.forEach(x => (output += `${_formatArray(x)},`))
-			if (output.charAt(output.length - 1) !== '[')
-				output = output.slice(0, output.length - 1)
-			output += ']'
-		} else {
-			output = _formatArray(array)
-		}
-
-		return output
-	}
-
-	private print_l(array: Array<any>) {
-		if (array.length === 0) return '{}'
-
-		let output = ''
-
-		function _formatArray(obj: Array<any>) {
-			if (obj.length === 0) return '{}'
-
-			let retVal = '['
-			obj.forEach(x => (retVal += `${x},`))
-			retVal = retVal.slice(0, retVal.length - 1)
-			retVal += ']'
-
-			return retVal
-		}
-
-		output += '{'
-		array.forEach(x => (output += `${_formatArray(x)},`))
-		if (output.charAt(output.length - 1) !== '{')
-			output = output.slice(0, output.length - 1)
-		output += '}'
-
-		return output
 	}
 }
 </script>
