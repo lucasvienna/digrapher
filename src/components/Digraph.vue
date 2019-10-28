@@ -1,7 +1,7 @@
 <template>
 	<v-card class="elevation-12">
 		<v-toolbar color="primary" dark flat>
-			<v-toolbar-title>Nodes + Edges</v-toolbar-title>
+			<v-toolbar-title>Knoten + Pfeile</v-toolbar-title>
 			<v-spacer></v-spacer>
 			<v-tooltip bottom>
 				<template v-slot:activator="{ on }">
@@ -16,14 +16,14 @@
 			<v-form>
 				<v-text-field
 					v-model="nodesInput"
-					label="Nodes"
+					label="Knoten"
 					name="nodes"
 					type="text"
 					outlined
 				></v-text-field>
 				<v-text-field
 					v-model="edgesInput"
-					label="Edges"
+					label="Pfeile"
 					name="edges"
 					type="text"
 					outlined
@@ -32,84 +32,84 @@
 
 			<v-row dense>
 				<v-col class="text-right" cols="4">
-					<v-label>Loops</v-label>
+					<v-label>Schlinge</v-label>
 				</v-col>
 				<v-col>{{ loops }}</v-col>
 			</v-row>
 
 			<v-row dense>
 				<v-col class="text-right" cols="4">
-					<v-label>Parallel edges</v-label>
+					<v-label>Parallele Pfeile</v-label>
 				</v-col>
 				<v-col>{{ parallels }}</v-col>
 			</v-row>
 
 			<v-row dense>
 				<v-col class="text-right" cols="4">
-					<v-label>Outgoing Degrees</v-label>
+					<v-label>Ausgangsgrade</v-label>
 				</v-col>
 				<v-col>{{ outgoingDegrees }}</v-col>
 			</v-row>
 
 			<v-row dense>
 				<v-col class="text-right" cols="4">
-					<v-label>Inbound Degrees</v-label>
+					<v-label>Eingangsgrade</v-label>
 				</v-col>
 				<v-col>{{ inboundDegrees }}</v-col>
 			</v-row>
 
 			<v-row dense>
 				<v-col class="text-right" cols="4">
-					<v-label>Source Nodes</v-label>
+					<v-label>Quellen</v-label>
 				</v-col>
 				<v-col>{{ print_r(sources) }}</v-col>
 			</v-row>
 
 			<v-row dense>
 				<v-col class="text-right" cols="4">
-					<v-label>Target Nodes</v-label>
+					<v-label>Senken</v-label>
 				</v-col>
 				<v-col>{{ print_r(targets) }}</v-col>
 			</v-row>
 
 			<v-row dense>
 				<v-col class="text-right" cols="4">
-					<v-label>Isolated Nodes</v-label>
+					<v-label>Isolierte Knoten</v-label>
 				</v-col>
 				<v-col>{{ print_r(isolated) }}</v-col>
 			</v-row>
 
 			<v-row dense>
 				<v-col class="text-right" cols="4">
-					<v-label>Source Targets</v-label>
+					<v-label>Mengenliste der Nachfolger</v-label>
 				</v-col>
 				<v-col>{{ print_r(sourceTargets, true) }}</v-col>
 			</v-row>
 
 			<v-row dense>
 				<v-col class="text-right" cols="4">
-					<v-label>Target Sources</v-label>
+					<v-label>Mengenliste der Vorgänger</v-label>
 				</v-col>
 				<v-col>{{ print_r(targetSources, true) }}</v-col>
 			</v-row>
 
 			<v-row dense>
 				<v-col class="text-right" cols="4">
-					<v-label>Incidence List</v-label>
+					<v-label>Inzidenzliste</v-label>
 				</v-col>
 				<v-col>{{ incidenceList }}</v-col>
 			</v-row>
 
 			<v-row dense>
 				<v-col class="text-right" cols="4">
-					<v-label>Target Adjacency List</v-label>
+					<v-label>Adjazenzliste der Endknoten</v-label>
 				</v-col>
 				<v-col>{{ targetAdjacencyList }}</v-col>
 			</v-row>
 
 			<v-row dense>
 				<v-col class="text-right" cols="4">
-					<v-label>Source Adjacency List</v-label>
+					<v-label>Adjazenzliste der Startknoten</v-label>
 				</v-col>
 				<v-col>{{ sourceAdjacencyList }}</v-col>
 			</v-row>
@@ -130,7 +130,7 @@
 		</v-card-text>
 		<v-card-actions>
 			<v-spacer></v-spacer>
-			<v-btn color="primary" @click="calculate()">Calculate</v-btn>
+			<v-btn color="primary" @click="calculate()">Berechnen</v-btn>
 		</v-card-actions>
 	</v-card>
 </template>

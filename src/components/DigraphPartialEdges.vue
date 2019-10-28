@@ -1,7 +1,7 @@
 <template>
 	<v-card class="elevation-12">
 		<v-toolbar color="primary" dark flat>
-			<v-toolbar-title>Partial Edges</v-toolbar-title>
+			<v-toolbar-title>Pfeilenteilmenge</v-toolbar-title>
 			<v-spacer></v-spacer>
 			<v-tooltip bottom>
 				<template v-slot:activator="{ on }">
@@ -16,7 +16,7 @@
 			<v-form>
 				<v-text-field
 					v-model="partialsInput"
-					label="Partial Edges"
+					label="Pfeilenteilmenge"
 					name="partial-edges"
 					type="text"
 					outlined
@@ -25,7 +25,7 @@
 
 			<v-row dense>
 				<v-col class="text-right" cols="4">
-					<v-label>Partial Nodes</v-label>
+					<v-label>Knotenteilmenge</v-label>
 				</v-col>
 				<v-col>{{ print_r(partialNodes) }}</v-col>
 			</v-row>

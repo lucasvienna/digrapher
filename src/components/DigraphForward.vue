@@ -1,7 +1,7 @@
 <template>
 	<v-card class="elevation-12">
 		<v-toolbar color="primary" dark flat>
-			<v-toolbar-title>Nodes + Forward List</v-toolbar-title>
+			<v-toolbar-title>Knoten + Adjazenzliste der Endknoten</v-toolbar-title>
 			<v-spacer></v-spacer>
 			<v-tooltip bottom>
 				<template v-slot:activator="{ on }">
@@ -16,14 +16,14 @@
 			<v-form>
 				<v-text-field
 					v-model="nodesInput"
-					label="Nodes"
+					label="Knoten"
 					name="nodes"
 					type="text"
 					outlined
 				></v-text-field>
 				<v-text-field
 					v-model="edgesInput"
-					label="Adjacency List"
+					label="Adjazenzliste"
 					name="edges"
 					type="text"
 					outlined
@@ -32,21 +32,21 @@
 
 			<v-row dense>
 				<v-col class="text-right" cols="4">
-					<v-label>Edges</v-label>
+					<v-label>Pfeile</v-label>
 				</v-col>
 				<v-col>{{ print_l(edges) }}</v-col>
 			</v-row>
 
 			<v-row dense>
 				<v-col class="text-right" cols="4">
-					<v-label>Incidence List</v-label>
+					<v-label>Inzidenzliste</v-label>
 				</v-col>
 				<v-col>{{ incidenceList }}</v-col>
 			</v-row>
 
 			<v-row dense>
 				<v-col class="text-right" cols="4">
-					<v-label>Source Adjacency List</v-label>
+					<v-label>Adjazenzliste der Startknoten</v-label>
 				</v-col>
 				<v-col>{{ sourceAdjacencyList }}</v-col>
 			</v-row>
